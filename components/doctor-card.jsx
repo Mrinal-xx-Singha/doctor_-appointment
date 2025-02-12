@@ -1,6 +1,10 @@
-import Image from "next/image";
+"use client";
 
+import Image from "next/image";
+import { useState } from "react";
+import { AppointmentModal } from "./appointment-modal";
 export function DoctorCard({ doctor }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div>
       <Image
@@ -16,11 +20,19 @@ export function DoctorCard({ doctor }) {
         <p className="text-gray-600 mb-2">
           <b>Experience</b> : {doctor.experience}
         </p>
-        <p className="text-gray-600 mb-2">{doctor.addres}</p>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">
+        <p className="text-gray-600 mb-2">{doctor.address}</p>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+        >
           Book Appointment
         </button>
       </div>
+      <AppointmentModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        doctorName={doctor.name}
+      />
     </div>
   );
 }

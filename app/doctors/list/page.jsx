@@ -21,7 +21,7 @@ const doctors = [
   },
   {
     id: 3,
-    name: "Dr. Mike Johnson",
+    name: "Dr. Rhayn Abner",
     specialization: "Pediatrician 🩺",
     experience: "12 years",
     address: "789 Oak St, City, Country",

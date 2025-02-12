@@ -1,5 +1,6 @@
 import { DoctorCard } from "@/components/doctor-card";
-import *  as  React from "react";
+import Link from "next/link";
+import * as React from "react";
 
 // *Moc Data for doctors
 const doctors = [
@@ -21,7 +22,7 @@ const doctors = [
   },
   {
     id: 3,
-    name: "Dr. Mike Johnson",
+    name: "Dr. Rhayn Abner",
     specialization: "Pediatrician 🩺",
     experience: "12 years",
     address: "789 Oak St, City, Country",
@@ -37,9 +38,9 @@ const doctors = [
   },
 ];
 
-export default  function DoctorsPage({ searchParams }) {
+export default function DoctorsPage({ searchParams }) {
   // TODO: filter the doctors by their specialization or their name
- 
+
   const { search } = React.use(searchParams);
 
   const filteredDoctors = doctors.filter(
@@ -50,7 +51,7 @@ export default  function DoctorsPage({ searchParams }) {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl text-gray-600 font-bold mb-6 uppercase tracking-tightest">
+      <h1 className="text-3xl text-gray-600 font-bold mb-6 uppercase tracking-wider">
         Doctors
       </h1>
       {search && (
@@ -63,6 +64,11 @@ export default  function DoctorsPage({ searchParams }) {
         {filteredDoctors.map((doctor) => (
           <DoctorCard key={doctor.id} doctor={doctor} />
         ))}
+      </div>
+      <div className="mt-8">
+        <Link href="/" className="text-blue-500 hover:text-blue-700">
+          ← Back to Home
+        </Link>
       </div>
     </div>
   );

@@ -35,7 +35,7 @@ export function SearchBar() {
         />
         <button className="absolute top-1/2 right-3 -translate-y-1/2 rounded-md bg-gray-50 p-2 text-gray-600 transition hover:text-gray-700">
           <span className="sr-only">Search</span>
-          <Search className="size-5" />
+          <Search className="size-5" aria-hidden={true} />
         </button>
       </div>
     </form>
