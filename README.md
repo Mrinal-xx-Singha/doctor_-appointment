@@ -6,7 +6,7 @@
 
 ### Setup Instructions
 
-1. Clone the repository form [Github](git@github.com:Mrinal-xx-Singha/doctor_appointment.git)
+1. Clone the repository from Github
 2. cd doctor_appointment
 3. Install dependencies
 
@@ -14,7 +14,7 @@
 
 npm install
 
-if deep peer dependencies error occur
+if legacy peer dependencies error occur
 
 npm install --legacy-peer-deps
 
@@ -33,6 +33,11 @@ bun dev
 ```
 
 # UI
+![Screenshot (337)](https://github.com/user-attachments/assets/f92e15ee-de7d-48b8-b6ca-a086d452dfd4)
+![Screenshot (338)](https://github.com/user-attachments/assets/6cb814bb-48ab-40fe-9123-e76720b61fe9)
+![Screenshot (339)](https://github.com/user-attachments/assets/ad83af04-5f7f-40ad-8e74-4802d3448301)
+![Screenshot (340)](https://github.com/user-attachments/assets/75265b99-06b2-46eb-8830-3fc41488f97d)
+
 
 ## STEPS
 
@@ -52,14 +57,13 @@ bun dev
 
 ## Note
 
-- To make a doctor dashboard where doctors can login and view monthly appointment we can make a backend with jwt authentication
-- We can create a protected route to allow doctor only authentication
+- To make a doctor dashboard where doctors can login and view monthly appointment we can make a backend server using express
+- We can create a protected route to allow doctor only authentication using jwt authentication
 - We can log in the user separately and store their data in a separate document
-- We can create a schema to store the details of doctors in mongodb
-- Can create a form for users(Patients) to fillout their symptoms and personal details
+- We can create a schema to store the list of doctors in mongodb
+- We can create a form for users(Patients) to fillout their symptoms and personal details
 
 ## Future Implementations and Todos
 
-- Need to have a backend
 - Can implement real time chat feature using socket.io
 - Can send mails of appointment using Node mailer on submission of appointment
