@@ -4,40 +4,18 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import Link from "next/link";
 import moment from "moment";
 import { useState } from "react";
-import { addDays } from "date-fns";
 import { AppointmentModal } from "@/components/appointment-modal";
+import useAppointmentsStore from "@/lib/appointmentStore";
 
 const localizer = momentLocalizer(moment);
 
-const userAppointments = [
-  {
-    id: 1,
-    title: "Dr. John Doe",
-    start: addDays(new Date(), 2),
-    end: addDays(new Date(), 2, 1),
-  },
-  {
-    id: 2,
-    title: "Dr. Jane Smith",
-    start: addDays(new Date(), 5),
-    end: addDays(new Date(), 5, 1),
-  },
-  {
-    id: 3,
-    title: "Dr. Rhayn Abner",
-    start: addDays(new Date(), 6),
-    end: addDays(new Date(), 6, 1),
-  },
-];
-
 export default function UserDashboard() {
-  // TODO: Find a way to transfer the saved data after booking the appointment in this component
-
   const [selectedDate, setSelectedDate] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const { appointments, removeAppointment } = useAppointmentsStore();
 
   const handleSelectedSlot = ({ start }) => {
-    selectedDate(start);
+    setSelectedDate(start);
     setModalIsOpen(true);
   };
 
@@ -48,26 +26,63 @@ export default function UserDashboard() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl text-gray-600 font-bold mb-6 uppercase tracking-wider ">
+      <h1 className="text-3xl text-gray-600 font-bold mb-6 uppercase tracking-wider px-2">
         Your Appointments
       </h1>
       <div className="h-[600px]">
         <Calendar
           localizer={localizer}
-          events={userAppointments}
+          events={appointments}
           startAccessor="start"
+          endAccessor="end"
+          selectable
           onSelectSlot={handleSelectedSlot}
           onSelectEvent={handleSelectEvent}
-          endAccessor="end"
           className="bg-white rounded-lg p-4 shadow-md"
         />
+      </div>
+      <div className="mt-6 px-2">
+        {/* Section to dispay the appointments  */}
+        <h1 className="text-3xl text-gray-600 font-bold mb-6 uppercase tracking-wider px-2">
+        Upcoming Appointments
+      </h1>
+        {appointments.length === 0 ? (
+          <p>No appointments found.</p>
+        ) : (
+          <ul className="space-y-2">
+            {appointments.map((appointment) => (
+              <li
+                key={appointment.id}
+                className="flex justify-between items-center border p-4 rounded shadow"
+              >
+                <div>
+                  <p className="font-semibold">{appointment.title}</p>
+                  <p>
+                    {moment(appointment.start).format("MMM D, YYYY h:mm A")} -{" "}
+                    {moment(appointment.end).format("h:mm A")}
+                  </p>
+                </div>
+                {/* adding the delete button */}
+                <button
+                  onClick={() => removeAppointment(appointment.id)}
+                  className="px-3 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-600"
+                >
+                  Delete
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
       <AppointmentModal
         isOpen={modalIsOpen}
         onClose={() => setModalIsOpen(false)}
         date={selectedDate}
-        appointments={userAppointments.filter(
-          (apt) => apt.start.toDateString() === selectedDate?.toDateString()
+        appointments={appointments.filter(
+          (apt) =>
+            selectedDate &&
+            new Date(apt.start).toDateString() ===
+              new Date(selectedDate).toDateString()
         )}
       />
       <div className="mt-8 ">

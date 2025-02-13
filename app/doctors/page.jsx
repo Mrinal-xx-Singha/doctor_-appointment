@@ -65,6 +65,7 @@ export default function DoctorsPage({ searchParams }) {
           <DoctorCard key={doctor.id} doctor={doctor} />
         ))}
       </div>
+      {/* For navigation */}
       <div className="mt-8">
         <Link href="/" className="text-blue-500 hover:text-blue-700">
           ← Back to Home
