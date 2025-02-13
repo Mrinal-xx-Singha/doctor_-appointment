@@ -23,4 +23,4 @@ bun dev
 - Implemented a calender view where users can see their scheduled appointments
 - Added a modal to display detailed information about a users appointment
 - Intregated global state management using zustand to dynamically  addAppointment, removeAppointment  in the calender . 
-- Displayed a list of user appointments in the **dashboard**,allowing users to cancel appointments if needed
+- Displayed a list of user appointments in the **Dashboard**,allowing users to cancel appointments if needed
