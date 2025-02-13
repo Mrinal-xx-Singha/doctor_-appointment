@@ -6,8 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "npm install --legacy-peer-deps"
+    "lint": "next lint"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
@@ -16,9 +15,9 @@
     "lucide-react": "^0.475.0",
     "moment": "^2.30.1",
     "next": "15.1.7",
-    "react": "^19.0.0",
+    "react": "^18.2.0",
     "react-big-calendar": "^1.17.1",
-    "react-dom": "^19.0.0",
+    "react-dom": "^18.2.0",
     "zustand": "^5.0.3"
   },
   "devDependencies": {
