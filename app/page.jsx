@@ -1,5 +1,6 @@
 import { SearchBar } from "@/components/search-bar";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -15,7 +16,9 @@ export default function Home() {
         <h1 className="text-4xl font-bold mb-8 uppercase sm:text-wrap">
           Find Your Doctor
         </h1>
-        <SearchBar />
+        <Suspense fallback={<p>Loading search...</p>}>
+          <SearchBar />
+        </Suspense>
 
         <div className="mt-8 flex justify-center flex-col items-center gap-2 md:text-sm lg:text-lg">
           <Link
